@@ -1,0 +1,22 @@
+CREATE TABLE access_tokens (
+  id TEXT PRIMARY KEY DEFAULT uuid_generate_v4(),
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  expire_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  user_id UUID NOT NULL,
+  token TEXT NOT NULL,
+  issued_at TIMESTAMPTZ NOT NULL,
+  user_agent TEXT
+);
+
+CREATE TABLE facebook_access_tokens (
+  id TEXT PRIMARY KEY DEFAULT uuid_generate_v4(),
+  app_id TEXT NOT NULL,
+  type TEXT NOT NULL,
+  application TEXT NOT NULL,
+  expire_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  issued_at TIMESTAMPTZ NOT NULL,
+  scopes TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+  user_id TEXT NOT NULL,
+  token TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
